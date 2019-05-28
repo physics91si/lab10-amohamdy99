@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+import math
 
 #Python script that returns the roots of a quadratic equation
 #of the form a*x^2 + b*x + c = 0
@@ -15,12 +16,24 @@ def main():
 
 
 def find_roots(a,b,c):
-    mid = b^2 - 4*a*c
-    sqrt_mid = mid^(1/2)
-    x1 = (-b + sqrt_mid)/2*a
-    x2 = (-b - sqrt_mid)/2*a
-    return x1, x2
-
+    try: 
+        mid = b**2 - 4*a*c
+        sqrt_mid = mid**(1/2)
+        x1 = (-b + sqrt_mid)/(2*a)
+        x2 = (-b - sqrt_mid)/(2*a)
+        return x1, x2
+    except TypeError:
+        print("Not what I was looking for")
+    except ZeroDivisionError:
+        print("a is zero and so the expression is not quadratic")
+        print("but the solution is")
+        x1=-c/b
+        return x1
+    except ZeroDivisionError:
+        print("a is zero and so the expression is not quadratic")
+        print("but the solution is", -c/b)
+        
+    
 
 if __name__=="__main__":
         main()
